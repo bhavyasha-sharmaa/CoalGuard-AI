@@ -572,6 +572,20 @@ function Dashboard({
   addAuditLog,
   showToast,
 }) {
+  const userName =
+  typeof currentUser === "object"
+    ? currentUser?.name || "Rajiv Kumar"
+    : currentUser || "Rajiv Kumar";
+
+const userInitials =
+  typeof currentUser === "object"
+    ? currentUser?.initials || "RK"
+    : String(currentUser || "RK")
+        .split(" ")
+        .map((name) => name[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase();
   /* ================================================= */
   /* DASHBOARD STATE */
   /* ================================================= */
@@ -691,16 +705,11 @@ function Dashboard({
     >
 
       <div className="avatar">
-        {currentUser
-          ?.split(" ")
-          .map((name) => name[0])
-          .join("")
-          .slice(0, 2)
-          .toUpperCase()}
-      </div>
+  {userInitials}
+</div>
 
       <div className="user-profile-info">
-        <strong>{currentUser}</strong>
+        <strong>{userName}</strong>
         <small>{role}</small>
       </div>
 
@@ -722,7 +731,7 @@ function Dashboard({
 
         <button
           className={`user-option ${
-            currentUser === "Rajiv Kumar" ? "active" : ""
+            userName === "Rajiv Kumar"? "active" : ""
           }`}
           onClick={() => {
             switchUser("Rajiv Kumar", "Mine Manager");
@@ -736,7 +745,7 @@ function Dashboard({
             <span>Mine Manager</span>
           </div>
 
-          {currentUser === "Rajiv Kumar" && (
+          {userName === "Rajiv Kumar" && (
             <span className="selected-user">✓</span>
           )}
         </button>
@@ -744,7 +753,7 @@ function Dashboard({
 
         <button
           className={`user-option ${
-            currentUser === "Amit Verma" ? "active" : ""
+            userName === "Amit Verma"? "active" : ""
           }`}
           onClick={() => {
             switchUser("Amit Verma", "Safety Officer");
@@ -758,7 +767,7 @@ function Dashboard({
             <span>Safety Officer</span>
           </div>
 
-          {currentUser === "Amit Verma" && (
+          {userName === "Amit Verma" && (
             <span className="selected-user">✓</span>
           )}
         </button>
@@ -766,7 +775,7 @@ function Dashboard({
 
         <button
           className={`user-option ${
-            currentUser === "Neha Singh" ? "active" : ""
+            userName === "Neha Singh"? "active" : ""
           }`}
           onClick={() => {
             switchUser("Neha Singh", "Environment Officer");
@@ -780,7 +789,7 @@ function Dashboard({
             <span>Environment Officer</span>
           </div>
 
-          {currentUser === "Neha Singh" && (
+          {userName === "Neha Singh"&& (
             <span className="selected-user">✓</span>
           )}
         </button>
@@ -788,7 +797,7 @@ function Dashboard({
 
         <button
           className={`user-option ${
-            currentUser === "Rakesh Sharma" ? "active" : ""
+            userName === "Rakesh Sharma" ? "active" : ""
           }`}
           onClick={() => {
             switchUser("Rakesh Sharma", "Labour Officer");
@@ -802,7 +811,7 @@ function Dashboard({
             <span>Labour Officer</span>
           </div>
 
-          {currentUser === "Rakesh Sharma" && (
+          {userName === "Rakesh Sharma" && (
             <span className="selected-user">✓</span>
           )}
         </button>
